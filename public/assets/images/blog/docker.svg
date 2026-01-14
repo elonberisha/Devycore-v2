@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#1a4d3d"/>
+    </linearGradient>
+    <linearGradient id="dockerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0db7ed"/>
+      <stop offset="100%" style="stop-color:#00ff88"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="400" height="250" fill="url(#bgGrad)"/>
+  <g transform="translate(200, 95)" filter="url(#glow)">
+    <rect x="-65" y="-5" width="130" height="45" fill="none" stroke="url(#dockerGrad)" stroke-width="2" rx="4"/>
+    <rect x="-55" y="-35" width="22" height="22" fill="none" stroke="#0db7ed" stroke-width="2"/>
+    <rect x="-28" y="-35" width="22" height="22" fill="none" stroke="#0db7ed" stroke-width="2"/>
+    <rect x="-1" y="-35" width="22" height="22" fill="none" stroke="#0db7ed" stroke-width="2"/>
+    <rect x="26" y="-35" width="22" height="22" fill="none" stroke="#0db7ed" stroke-width="2"/>
+    <rect x="-55" y="3" width="22" height="22" fill="#0db7ed" opacity="0.3"/>
+    <rect x="-28" y="3" width="22" height="22" fill="#0db7ed" opacity="0.5"/>
+    <rect x="-1" y="3" width="22" height="22" fill="#0db7ed" opacity="0.7"/>
+    <rect x="26" y="3" width="22" height="22" fill="#0db7ed"/>
+  </g>
+  <text x="200" y="190" font-family="Arial Black, sans-serif" font-size="28" font-weight="bold" fill="url(#dockerGrad)" text-anchor="middle">DOCKER</text>
+  <text x="200" y="215" font-family="monospace" font-size="12" fill="#0db7ed" text-anchor="middle" opacity="0.7">CI/CD | Containers</text>
+</svg>

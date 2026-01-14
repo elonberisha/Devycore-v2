@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- NO CSP - To test if browser extension is adding it -->
+    <title>CSP Test Page</title>
+
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #00ff88;
+        }
+        .error { color: #ff0055; }
+        .success { color: #00ff88; }
+        h1 { color: #00ff88; }
+        pre {
+            background: #1a1a1a;
+            padding: 15px;
+            border: 2px solid #00ff88;
+            overflow-x: auto;
+        }
+        button {
+            background: #00ff88;
+            color: #0a0a0a;
+            border: none;
+            padding: 10px 20px;
+            font-family: monospace;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #ff0055;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSP Detection Test</h1>
+
+    <h2>1. Check CSP via JavaScript</h2>
+    <button onclick="checkCSP()">Check Current CSP</button>
+    <pre id="cspResult">Click button to check CSP...</pre>
+
+    <h2>2. Test External Image Load</h2>
+    <button onclick="testImage()">Load Test Image</button>
+    <div id="imageResult"></div>
+
+    <h2>3. Test External Script Load</h2>
+    <button onclick="testScript()">Load Three.js</button>
+    <pre id="scriptResult">Click button to test...</pre>
+
+    <h2>4. Response Headers</h2>
+    <button onclick="checkHeaders()">Fetch Headers</button>
+    <pre id="headersResult">Click button to fetch...</pre>
+
+    <script>
+        function checkCSP() {
+            const result = document.getElementById('cspResult');
+
+            // Try to get CSP from meta tag
+            const metaCSP = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+
+            let output = '=== CSP DETECTION ===\n\n';
+
+            if (metaCSP) {
+                output += '✓ Meta CSP Found:\n' + metaCSP.content + '\n\n';
+            } else {
+                output += '✗ No meta CSP tag found\n\n';
+            }
+
+            // Check document.securityPolicy (if available)
+            if (document.securityPolicy) {
+                output += '✓ Document Security Policy:\n';
+                output += JSON.stringify(document.securityPolicy, null, 2) + '\n\n';
+            }
+
+            // Check for violations
+            output += '=== CSP VIOLATION LISTENER ===\n';
+            output += 'Listening for violations...\n';
+            output += 'Try loading an image or script to see if violations occur.\n';
+
+            result.textContent = output;
+            result.className = 'success';
+        }
+
+        function testImage() {
+            const resultDiv = document.getElementById('imageResult');
+            resultDiv.innerHTML = '<p>Loading image...</p>';
+
+            const img = new Image();
+            img.onload = () => {
+                resultDiv.innerHTML = '<p class="success">✓ Image loaded successfully!</p>' +
+                    '<img src="' + img.src + '" style="border: 2px solid #00ff88; max-width: 300px;">';
+            };
+            img.onerror = () => {
+                resultDiv.innerHTML = '<p class="error">✗ Image failed to load (check console for CSP error)</p>';
+            };
+            img.src = 'https://via.placeholder.com/300x200/0a0a0a/00ff88?text=TEST';
+        }
+
+        function testScript() {
+            const result = document.getElementById('scriptResult');
+            result.textContent = 'Loading Three.js from CDN...\n';
+            result.className = '';
+
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+
+            script.onload = () => {
+                result.textContent += '\n✓ Three.js loaded successfully!\n';
+                result.textContent += 'THREE object available: ' + (typeof window.THREE !== 'undefined') + '\n';
+                result.className = 'success';
+            };
+
+            script.onerror = (error) => {
+                result.textContent += '\n✗ Failed to load Three.js\n';
+                result.textContent += 'Check console for CSP violation\n';
+                result.className = 'error';
+            };
+
+            document.head.appendChild(script);
+        }
+
+        async function checkHeaders() {
+            const result = document.getElementById('headersResult');
+            result.textContent = 'Fetching headers...\n';
+
+            try {
+                const response = await fetch(window.location.href, { method: 'HEAD' });
+
+                let output = '=== RESPONSE HEADERS ===\n\n';
+
+                response.headers.forEach((value, key) => {
+                    output += key + ': ' + value + '\n';
+                });
+
+                result.textContent = output;
+                result.className = 'success';
+            } catch (error) {
+                result.textContent = 'Error fetching headers: ' + error.message;
+                result.className = 'error';
+            }
+        }
+
+        // Listen for CSP violations
+        document.addEventListener('securitypolicyviolation', (e) => {
+            console.error('CSP VIOLATION:', e);
+            console.log('Blocked URI:', e.blockedURI);
+            console.log('Violated Directive:', e.violatedDirective);
+            console.log('Original Policy:', e.originalPolicy);
+
+            alert('CSP VIOLATION!\n\n' +
+                'Blocked: ' + e.blockedURI + '\n' +
+                'Directive: ' + e.violatedDirective + '\n\n' +
+                'See console for details.');
+        });
+
+        // Auto-run on load
+        window.addEventListener('load', () => {
+            console.log('CSP Test Page Loaded');
+            console.log('Run tests using buttons above');
+        });
+    </script>
+</body>
+</html>

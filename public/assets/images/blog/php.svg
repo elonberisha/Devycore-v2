@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#1a4d2e"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ff88"/>
+      <stop offset="100%" style="stop-color:#00d470"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="400" height="250" fill="url(#bgGrad)"/>
+  <!-- Grid pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="50" x2="400" y2="50" stroke="#00ff88" stroke-width="1"/>
+    <line x1="0" y1="100" x2="400" y2="100" stroke="#00ff88" stroke-width="1"/>
+    <line x1="0" y1="150" x2="400" y2="150" stroke="#00ff88" stroke-width="1"/>
+    <line x1="0" y1="200" x2="400" y2="200" stroke="#00ff88" stroke-width="1"/>
+    <line x1="80" y1="0" x2="80" y2="250" stroke="#00ff88" stroke-width="1"/>
+    <line x1="160" y1="0" x2="160" y2="250" stroke="#00ff88" stroke-width="1"/>
+    <line x1="240" y1="0" x2="240" y2="250" stroke="#00ff88" stroke-width="1"/>
+    <line x1="320" y1="0" x2="320" y2="250" stroke="#00ff88" stroke-width="1"/>
+  </g>
+  <!-- PHP Logo stylized -->
+  <ellipse cx="200" cy="115" rx="90" ry="55" fill="none" stroke="url(#accentGrad)" stroke-width="3" filter="url(#glow)"/>
+  <text x="200" y="130" font-family="Arial Black, sans-serif" font-size="42" font-weight="bold" fill="url(#accentGrad)" text-anchor="middle" filter="url(#glow)">PHP</text>
+  <!-- Code brackets -->
+  <text x="80" y="130" font-family="monospace" font-size="60" fill="#00ff88" opacity="0.3">&lt;?</text>
+  <text x="290" y="130" font-family="monospace" font-size="60" fill="#00ff88" opacity="0.3">?&gt;</text>
+  <!-- Bottom accent line -->
+  <rect x="100" y="200" width="200" height="3" fill="url(#accentGrad)" filter="url(#glow)"/>
+</svg>

@@ -1,0 +1,13 @@
+{"timestamp":"2026-01-10 00:15:44","action":"contact_form_submitted","user_id":null,"ip":"127.0.0.1","details":{"submission_id":"1","email":"test@example.com","project_type":"Web Application","email_sent":false}}
+{"timestamp":"2026-01-10 14:53:42","action":"contact_form_submitted","user_id":null,"ip":"127.0.0.1","details":{"submission_id":"2","email":"r78kyuf@efrihrob.com","project_type":"Web Application","email_sent":false}}
+{"timestamp":"2026-01-10 14:54:45","action":"contact_form_submitted","user_id":null,"ip":"127.0.0.1","details":{"submission_id":"3","email":"r78kyuf@efrihrob.com","project_type":"E-Commerce","email_sent":false}}
+{"timestamp":"2026-01-10 15:08:46","action":"login_failed","user_id":null,"ip":"127.0.0.1","details":{"username":"admin","ip":"127.0.0.1"}}
+{"timestamp":"2026-01-10 15:08:51","action":"login_failed","user_id":null,"ip":"127.0.0.1","details":{"username":"admin","ip":"127.0.0.1"}}
+{"timestamp":"2026-01-10 15:25:14","action":"login_failed","user_id":null,"ip":"127.0.0.1","details":{"username":"admin","ip":"127.0.0.1"}}
+{"timestamp":"2026-01-10 15:29:33","action":"contact_form_submitted","user_id":null,"ip":"127.0.0.1","details":{"submission_id":"4","email":"test@test.com","project_type":"Web","email_sent":false}}
+{"timestamp":"2026-01-10 15:32:51","action":"login_failed","user_id":null,"ip":"127.0.0.1","details":{"username":"admin","ip":"127.0.0.1"}}
+{"timestamp":"2026-01-10 15:56:15","action":"login_success","user_id":1,"ip":"127.0.0.1","details":{"username":"admin"}}
+{"timestamp":"2026-01-10 16:03:55","action":"logout","user_id":1,"ip":"127.0.0.1","details":{"username":"admin"}}
+{"timestamp":"2026-01-10 21:03:46","action":"discount_form_submitted","user_id":null,"ip":"127.0.0.1","details":{"submission_id":"1","email":"info@devycore.com","prize":"DISC_50","percentage":50,"email_sent":false}}
+{"timestamp":"2026-01-10 21:07:55","action":"contact_form_submitted","user_id":null,"ip":"127.0.0.1","details":{"submission_id":"5","email":"elonberisha1999@gmail.com","project_type":"E-Commerce","email_sent":true}}
+{"timestamp":"2026-01-10 21:21:05","action":"login_success","user_id":1,"ip":"127.0.0.1","details":{"username":"admin"}}
